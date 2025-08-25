@@ -1,8 +1,9 @@
 {% extends 'layout/base.html' %}
 {% load static %}
+{% block title %}Blog detail{% endblock %}
 {% block content %}
     <main class="main">
-        	<div class="page-header text-center" style="background-image: url('assets/{% static 'images/page-header-bg.jpg' %}')">
+        	<div class="page-header text-center" style="background-image: url('{% static 'assets/images/page-header-bg.jpg' %}')">
         		<div class="container">
         			<h1 class="page-title">Default With Sidebar<span>Single Post</span></h1>
         		</div><!-- End .container -->
@@ -23,7 +24,7 @@
                 		<div class="col-lg-9">
                             <article class="entry single-entry">
                                 <figure class="entry-media">
-                                    <img src="assets/{% static 'images/blog/single/1.jpg' %}" alt="image desc">
+                                    <img src="{% static 'assets/images/blog/single/1.jpg' %}" alt="image desc">
                                 </figure><!-- End .entry-media -->
 
                                 <div class="entry-body">
@@ -53,7 +54,7 @@
 
                                         <div class="pb-1"></div><!-- End .mb-1 -->
 
-                                        <img src="assets/{% static 'images/blog/single/2.jpg' %}" alt="image" class="float-left">
+                                        <img src="{% static 'assets/images/blog/single/2.jpg' %}" alt="image" class="float-left">
 
                                         <h3>Quisque volutpat mattiseros. </h3>
 
@@ -77,7 +78,7 @@
 
                                         <h3>Morbi interdum mollis sapien.</h3>
 
-                                        <img src="assets/{% static 'images/blog/single/3.jpg' %}" alt="image">
+                                        <img src="{% static 'assets/images/blog/single/3.jpg' %}" alt="image">
 
                                         <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent <a href="#">elementum hendrerit</a> tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
 
@@ -106,7 +107,7 @@
                                 <div class="entry-author-details">
                                     <figure class="author-media">
                                         <a href="#">
-                                            <img src="assets/{% static 'images/blog/single/author.jpg' %}" alt="User name">
+                                            <img src="{% static 'assets/images/blog/single/author.jpg' %}" alt="User name">
                                         </a>
                                     </figure><!-- End .author-media -->
 
@@ -163,7 +164,7 @@
                                     <article class="entry entry-grid">
                                         <figure class="entry-media">
                                             <a href="single.html">
-                                                <img src="assets/{% static 'images/blog/grid/3cols/post-1.jpg' %}" alt="image desc">
+                                                <img src="{% static 'assets/images/blog/grid/3cols/post-1.jpg' %}" alt="image desc">
                                             </a>
                                         </figure><!-- End .entry-media -->
 
@@ -188,7 +189,7 @@
                                     <article class="entry entry-grid">
                                         <figure class="entry-media">
                                             <a href="single.html">
-                                                <img src="assets/{% static 'images/blog/grid/3cols/post-2.jpg' %}" alt="image desc">
+                                                <img src="{% static 'assets/images/blog/grid/3cols/post-2.jpg' %}" alt="image desc">
                                             </a>
                                         </figure><!-- End .entry-media -->
 
@@ -212,7 +213,7 @@
                                     <article class="entry entry-grid">
                                         <figure class="entry-media">
                                             <a href="single.html">
-                                                <img src="assets/{% static 'images/blog/grid/3cols/post-3.jpg' %}" alt="image desc">
+                                                <img src="{% static 'assets/images/blog/grid/3cols/post-3.jpg' %}" alt="image desc">
                                             </a>
                                         </figure><!-- End .entry-media -->
 
@@ -237,7 +238,7 @@
                                     <article class="entry entry-grid">
                                         <figure class="entry-media">
                                             <a href="single.html">
-                                                <img src="assets/{% static 'images/blog/grid/3cols/post-4.jpg' %}" alt="image desc">
+                                                <img src="{% static 'assets/images/blog/grid/3cols/post-4.jpg' %}" alt="image desc">
                                             </a>
                                         </figure><!-- End .entry-media -->
 
@@ -268,7 +269,7 @@
                                         <div class="comment">
                                             <figure class="comment-media">
                                                 <a href="#">
-                                                    <img src="assets/{% static 'images/blog/comments/1.jpg' %}" alt="User name">
+                                                    <img src="{% static 'assets/images/blog/comments/1.jpg' %}" alt="User name">
                                                 </a>
                                             </figure>
 
@@ -290,7 +291,7 @@
                                                 <div class="comment">
                                                     <figure class="comment-media">
                                                         <a href="#">
-                                                            <img src="assets/{% static 'images/blog/comments/2.jpg' %}" alt="User name">
+                                                            <img src="{% static 'assets/images/blog/comments/2.jpg' %}" alt="User name">
                                                         </a>
                                                     </figure>
 
@@ -314,7 +315,7 @@
                                         <div class="comment">
                                             <figure class="comment-media">
                                                 <a href="#">
-                                                    <img src="assets/{% static 'images/blog/comments/3.jpg' %}" alt="User name">
+                                                    <img src="{% static 'assets/images/blog/comments/3.jpg' %}" alt="User name">
                                                 </a>
                                             </figure>
 
@@ -394,7 +395,7 @@
                                         <li>
                                             <figure>
                                                 <a href="#">
-                                                    <img src="assets/{% static 'images/blog/sidebar/post-1.jpg' %}" alt="post">
+                                                    <img src="{% static 'assets/images/blog/sidebar/post-1.jpg' %}" alt="post">
                                                 </a>
                                             </figure>
 
@@ -406,7 +407,7 @@
                                         <li>
                                             <figure>
                                                 <a href="#">
-                                                    <img src="assets/{% static 'images/blog/sidebar/post-2.jpg' %}" alt="post">
+                                                    <img src="{% static 'assets/images/blog/sidebar/post-2.jpg' %}" alt="post">
                                                 </a>
                                             </figure>
 
@@ -418,7 +419,7 @@
                                         <li>
                                             <figure>
                                                 <a href="#">
-                                                    <img src="assets/{% static 'images/blog/sidebar/post-3.jpg' %}" alt="post">
+                                                    <img src="{% static 'assets/images/blog/sidebar/post-3.jpg' %}" alt="post">
                                                 </a>
                                             </figure>
 
@@ -430,7 +431,7 @@
                                         <li>
                                             <figure>
                                                 <a href="#">
-                                                    <img src="assets/{% static 'images/blog/sidebar/post-4.jpg' %}" alt="post">
+                                                    <img src="{% static 'assets/images/blog/sidebar/post-4.jpg' %}" alt="post">
                                                 </a>
                                             </figure>
 
@@ -447,7 +448,7 @@
 
                                     <div class="banner-sidebar">
                                         <a href="#">
-                                            <img src="assets/{% static 'images/blog/sidebar/banner.jpg' %}" alt="banner">
+                                            <img src="{% static 'assets/images/blog/sidebar/banner.jpg' %}" alt="banner">
                                         </a>
                                     </div><!-- End .banner-ad -->
                                 </div><!-- End .widget -->
@@ -478,5 +479,5 @@
                 	</div><!-- End .row -->
                 </div><!-- End .container -->
             </div><!-- End .page-content -->
-        </main><!-- End .main -->
+        </main>
 {% endblock %}

@@ -1,40 +1,19 @@
 from django.shortcuts import render
 
-def about_page_view(request):
-    return render(request, 'about.html')
+def home_page_view(request):
+    return render(request, 'home.html')
 
-def n404_page_view(request):
-    return render(request, '404.html')
+def n404_view(request):
+    return render(request, 'pages/404.html')
 
-def blog_detail_page_view(request):
-    return render(request, 'blog-detail.html')
+def about_view(request):
+    return render(request, 'pages/about.html')
 
-def blog_list_page_view(request):
-    return render(request, 'blog-list.html')
+def coming_soon_view(request):
+    return render(request, 'pages/coming-soon.html')
 
-def cart_page_view(request):
-    return render(request, 'cart.html')
+def faq_view(request):
+    return render(request, 'pages/faq.html')
 
-def category_page_view(request):
-    return render(request, 'category.html')
-
-def checkout_page_view(request):
-    return render(request, 'checkout.html')
-
-def contact_page_view(request):
-    return render(request, 'contact.html')
-
-def dashboard_page_view(request):
-    return render(request, 'dashboard.html')
-
-def faq_page_view(request):
-    return render(request, 'faq.html')
-
-def login_page_view(request):
-    return render(request, 'login.html')
-
-def product_detail_page_view(request):
-    return render(request, 'product-detail.html')
-
-def wishlist_page_view(request):
-    return render(request, 'wishlist.html')
+def contact_view(request):
+    return render(request, 'pages/contact.html')
