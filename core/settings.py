@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+from ckeditor_demo.settings import CKEDITOR_UPLOAD_PATH, CKEDITOR_CONFIGS
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'django_extensions',
+    'ckeditor',
+    'ckeditor_uploader',
 
     'apps.pages',
     'apps.accounts',
@@ -131,6 +135,14 @@ STATICFILES_DIRS = (BASE_DIR / 'assets',)
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
+
+CKEDITOR_UPLOAD_PATH = 'media/ckeditor/'
+
+CKEDITOR_CONFIGS ={
+    'default': {
+        'toolbar': 'full',
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

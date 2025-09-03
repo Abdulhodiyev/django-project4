@@ -1,9 +1,10 @@
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.db import models
 
 
 class BaseBlogModel(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         abstract = True
@@ -12,7 +13,7 @@ class BaseBlogModel(models.Model):
 class BlogAuthorModel(BaseBlogModel):
     full_name = models.CharField(max_length=255)
     image = models.ImageField(upload_to='authors/')
-    bio = models.TextField()
+    bio = models.CharField(max_length=256)
 
     def __str__(self):
         return self.full_name
@@ -44,18 +45,16 @@ class BlogTagModel(BaseBlogModel):
         verbose_name_plural = 'tags'
 
 
-
 class BlogListModel(BaseBlogModel):
-    STATUS_CHOICES = (
-        ("active", "Active"),
-        ("inactive", "Inactive"),
-        ("draft", "Draft"),
-        ("published", "Published"),
-    )
+    class BlogStatus(models.TextChoices):
+        DRAFT = 'DRAFT'
+        PUBLISHED ='PUBLISHED'
+        DELETED = 'DELETED'
 
     title = models.CharField(max_length=255)
     image = models.ImageField(upload_to='blogs')
-    description = models.TextField()
+    description = RichTextUploadingField
+    status = models.CharField(max_length=20, choices=BlogStatus, default=BlogStatus.DRAFT)
 
     categories = models.ManyToManyField(
         BlogCategoryModel,
@@ -65,19 +64,17 @@ class BlogListModel(BaseBlogModel):
     author_by = models.ForeignKey(
         BlogAuthorModel,
         on_delete=models.CASCADE,
-        related_name='blogs'
+        related_name='author'
     )
 
     tags = models.ManyToManyField(
         BlogTagModel,
-        related_name='posts'
-    )
-
-    status = models.CharField(
-        max_length=10,
-        choices=STATUS_CHOICES,
-        default="draft"
+        related_name='tag'
     )
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        verbose_name = 'blog'
+        verbose_name_plural = 'blogs'
