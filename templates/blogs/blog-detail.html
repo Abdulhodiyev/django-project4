@@ -55,48 +55,14 @@
                                     </div><!-- End .entry-cats -->
 
                                     <div class="entry-content editor-content">
-                                        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti.</p>
-
-                                        <p>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a <a href="#">ultrices sagittis</a>, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
-
-                                        <div class="pb-1"></div><!-- End .mb-1 -->
-
-                                        <img src="{% static 'assets/images/blog/single/2.jpg' %}" alt="image" class="float-left">
-
-                                        <h3>Quisque volutpat mattiseros. </h3>
-
-                                        <ul>
-                                            <li>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. </li>
-                                            <li>Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. </li>
-                                            <li>Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</li>
-                                        </ul>
-
-                                        <div class="pb-1 clearfix"></div><!-- End .clearfix -->
-
-                                        <p>Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapibus id, mattis vel, nisi. Sed pretium, ligula <a href="#">sollicitudin laoreet</a> viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. </p>
-
-                                        <blockquote>
-                                            <p>“ Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. ”</p>
-                                        </blockquote>
-
-                                        <p>Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent elementum hendrerit tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna. Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. </p>
-
-                                        <div class="pb-1"></div><!-- End .pb-1 -->
-
-                                        <h3>Morbi interdum mollis sapien.</h3>
-
-                                        <img src="{% static 'assets/images/blog/single/3.jpg' %}" alt="image">
-
-                                        <p>Sed pretium, ligula sollicitudin laoreet viverra, tortor libero sodales leo, eget blandit nunc tortor eu nibh. Nullam mollis. Ut justo. Suspendisse potenti. Sed egestas, ante et vulputate volutpat, eros pede semper est, vitae luctus metus libero eu augue. Morbi purus libero, faucibus adipiscing, commodo quis, gravida id, est. Sed lectus. Praesent <a href="#">elementum hendrerit</a> tortor. Sed semper lorem at felis. Vestibulum volutpat, lacus a ultrices sagittis, mi neque euismod dui, eu pulvinar nunc sapien ornare nisl. Phasellus pede arcu, dapibus eu, fermentum et, dapibus sed, urna.</p>
-
-                                        <p>Morbi interdum mollis sapien. Sed ac risus. Phasellus lacinia, magna a ullamcorper laoreet, lectus arcu pulvinar risus, vitae facilisis libero dolor a purus. Sed vel lacus. Mauris nibh felis, adipiscing varius, adipiscing in, lacinia vel, tellus. Suspendisse ac urna. Etiam pellentesque mauris ut lectus. Nunc tellus ante, mattis eget, gravida vitae, ultricies ac, leo. Integer leo pede, ornare a, lacinia eu, vulputate vel, nisl. Suspendisse mauris. Fusce accumsan mollis eros. Pellentesque a diam sit amet mi ullamcorper vehicula. Integer adipiscing risus a sem. Nullam quis massa sit amet nibh viverra malesuada. Nunc sem lacus, accumsan quis, faucibus non, congue vel, arcu. </p>
+                                        <p>{{ blog.content|safe }}</p>
                                     </div><!-- End .entry-content -->
 
                                     <div class="entry-footer row no-gutters flex-column flex-md-row">
                                         <div class="col-md">
                                             <div class="entry-tags">
                                                 <span>Tags:</span>
-                                                {% for tags in blog.tags.all %}
+                                                {% for tag in blog.tags.all %}
                                                     <a href="#">{{ tag.title }}</a>
                                                 {% endfor %}
                                             </div><!-- End .entry-tags -->
@@ -171,103 +137,38 @@
                                             }
                                         }
                                     }'>
-                                    <article class="entry entry-grid">
+                                    {% for related in related_blogs %}
+                                        <article class="entry entry-grid">
                                         <figure class="entry-media">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/images/blog/grid/3cols/post-1.jpg' %}" alt="image desc">
+                                            <a href="{% url 'blogs:detail' pk=related.id %}">
+                                                <img src="{{ related.image.url }}" alt="image desc">
                                             </a>
                                         </figure><!-- End .entry-media -->
 
                                         <div class="entry-body">
                                             <div class="entry-meta">
-                                                <a href="#">Nov 22, 2018</a>
+                                                <a href="#">{{ related.created_at|date:'M d, Y' }}</a>
                                                 <span class="meta-separator">|</span>
                                                 <a href="#">2 Comments</a>
                                             </div><!-- End .entry-meta -->
 
                                             <h2 class="entry-title">
-                                                <a href="single.html">Cras ornare tristique elit.</a>
+                                                <a href="single.html">{{ related.title }}</a>
                                             </h2><!-- End .entry-title -->
 
                                             <div class="entry-cats">
-                                                in <a href="#">Lifestyle</a>,
-                                                <a href="#">Shopping</a>
+                                                in
+                                                {% for cat in related.category.all %}
+                                                    {% if forloop.last %}
+                                                        <a href="#">{{ cat.title }}</a>
+                                                    {% else %}
+                                                        <a href="#">{{ cat.title }}</a>,
+                                                    {% endif %}
+                                                {% endfor %}
                                             </div><!-- End .entry-cats -->
                                         </div><!-- End .entry-body -->
                                     </article><!-- End .entry -->
-
-                                    <article class="entry entry-grid">
-                                        <figure class="entry-media">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/images/blog/grid/3cols/post-2.jpg' %}" alt="image desc">
-                                            </a>
-                                        </figure><!-- End .entry-media -->
-
-                                        <div class="entry-body">
-                                            <div class="entry-meta">
-                                                <a href="#">Nov 21, 2018</a>
-                                                <span class="meta-separator">|</span>
-                                                <a href="#">0 Comments</a>
-                                            </div><!-- End .entry-meta -->
-
-                                            <h2 class="entry-title">
-                                                <a href="single.html">Vivamus ntulla necante.</a>
-                                            </h2><!-- End .entry-title -->
-
-                                            <div class="entry-cats">
-                                                in <a href="#">Lifestyle</a>
-                                            </div><!-- End .entry-cats -->
-                                        </div><!-- End .entry-body -->
-                                    </article><!-- End .entry -->
-
-                                    <article class="entry entry-grid">
-                                        <figure class="entry-media">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/images/blog/grid/3cols/post-3.jpg' %}" alt="image desc">
-                                            </a>
-                                        </figure><!-- End .entry-media -->
-
-                                        <div class="entry-body">
-                                            <div class="entry-meta">
-                                                <a href="#">Nov 18, 2018</a>
-                                                <span class="meta-separator">|</span>
-                                                <a href="#">3 Comments</a>
-                                            </div><!-- End .entry-meta -->
-
-                                            <h2 class="entry-title">
-                                                <a href="single.html">Utaliquam sollicitudin leo.</a>
-                                            </h2><!-- End .entry-title -->
-
-                                            <div class="entry-cats">
-                                                in <a href="#">Fashion</a>,
-                                                <a href="#">Lifestyle</a>
-                                            </div><!-- End .entry-cats -->
-                                        </div><!-- End .entry-body -->
-                                    </article><!-- End .entry -->
-
-                                    <article class="entry entry-grid">
-                                        <figure class="entry-media">
-                                            <a href="single.html">
-                                                <img src="{% static 'assets/images/blog/grid/3cols/post-4.jpg' %}" alt="image desc">
-                                            </a>
-                                        </figure><!-- End .entry-media -->
-
-                                        <div class="entry-body">
-                                            <div class="entry-meta">
-                                                <a href="#">Nov 15, 2018</a>
-                                                <span class="meta-separator">|</span>
-                                                <a href="#">4 Comments</a>
-                                            </div><!-- End .entry-meta -->
-
-                                            <h2 class="entry-title">
-                                                <a href="single.html">Fusce pellentesque suscipit.</a>
-                                            </h2><!-- End .entry-title -->
-
-                                            <div class="entry-cats">
-                                                in <a href="#">Travel</a>
-                                            </div><!-- End .entry-cats -->
-                                        </div><!-- End .entry-body -->
-                                    </article><!-- End .entry -->
+                                    {% endfor %}
                                 </div><!-- End .owl-carousel -->
                             </div><!-- End .related-posts -->
 
@@ -373,7 +274,6 @@
                                 </form>
                             </div><!-- End .reply -->
                 		</div><!-- End .col-lg-9 -->
-
                         {% include 'blogs/blog-left-side.html' %}
                     </div><!-- End .row -->
                 </div><!-- End .container -->

@@ -42,7 +42,7 @@
                                             <span class="meta-separator">|</span>
                                             <a href="#">{{ blog.created_at|date:"M d, Y" }}</a>
                                             <span class="meta-separator">|</span>
-                                            <a href="#">2 Comments</a>
+                                            <a href="#">Views: {{ blog.views_count }}</a>
                                         </div><!-- End .entry-meta -->
 
                                         <h2 class="entry-title">
@@ -53,15 +53,15 @@
                                             in
                                             {% for cat in blog.category.all %}
                                                 {% if forloop.last %}
-                                                    <a href="#">Lifestyle</a>
+                                                    <a href="#">{{ cat.title }}</a>
                                                 {% else %}
-                                                    <a href="#">Lifestyle</a>,
+                                                    <a href="#">{{ cat.title }}</a>,
                                                 {% endif %}
                                             {% endfor %}
                                         </div><!-- End .entry-cats -->
 
                                         <div class="entry-content">
-                                            <p>{{ blog.content|slice:":50" }}</p>
+                                            <p>{{ blog.content|slice:":50|"|safe }}</p>
                                             <a href="" class="read-more">Continue Reading</a>
                                         </div><!-- End .entry-content -->
                                     </div><!-- End .entry-body -->
@@ -87,106 +87,7 @@
                             </ul>
                         </nav>
                     </div><!-- End .col-lg-9 -->
-
-                    <aside class="col-lg-3">
-                        <div class="sidebar">
-                            <div class="widget widget-search">
-                                <h3 class="widget-title">Search</h3><!-- End .widget-title -->
-
-                                <form action="#">
-                                    <label for="ws" class="sr-only">Search in blog</label>
-                                    <input type="search" class="form-control" name="ws" id="ws" placeholder="Search in blog" required>
-                                    <button type="submit" class="btn"><i class="icon-search"></i><span class="sr-only">Search</span></button>
-                                </form>
-                            </div><!-- End .widget -->
-
-                            <div class="widget widget-cats">
-                                <h3 class="widget-title">Categories</h3><!-- End .widget-title -->
-
-                                <ul>
-                                    {% for cat in categories %}
-                                    <li><a href="#">{{ cat.title }}<span>{{ cat.blogs.count }}</span></a></li>
-                                    {% endfor %}
-                                </ul>
-                            </div><!-- End .widget -->
-
-                            <div class="widget">
-                                <h3 class="widget-title">Popular Posts</h3><!-- End .widget-title -->
-
-                                <ul class="posts-list">
-                                    <li>
-                                        <figure>
-                                            <a href="#">
-                                                <img src="{% static 'assets/images/blog/sidebar/post-1.jpg' %}" alt="post">
-                                            </a>
-                                        </figure>
-
-                                        <div>
-                                            <span>Nov 22, 2018</span>
-                                            <h4><a href="#">Aliquam tincidunt mauris eurisus.</a></h4>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <figure>
-                                            <a href="#">
-                                                <img src="{% static 'assets/images/blog/sidebar/post-2.jpg' %}" alt="post">
-                                            </a>
-                                        </figure>
-
-                                        <div>
-                                            <span>Nov 19, 2018</span>
-                                            <h4><a href="#">Cras ornare tristique elit.</a></h4>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <figure>
-                                            <a href="#">
-                                                <img src="{% static 'assets/images/blog/sidebar/post-3.jpg' %}" alt="post">
-                                            </a>
-                                        </figure>
-
-                                        <div>
-                                            <span>Nov 12, 2018</span>
-                                            <h4><a href="#">Vivamus vestibulum ntulla nec ante.</a></h4>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <figure>
-                                            <a href="#">
-                                                <img src="{% static 'assets/images/blog/sidebar/post-4.jpg' %}" alt="post">
-                                            </a>
-                                        </figure>
-
-                                        <div>
-                                            <span>Nov 25, 2018</span>
-                                            <h4><a href="#">Donec quis dui at dolor  tempor interdum.</a></h4>
-                                        </div>
-                                    </li>
-                                </ul><!-- End .posts-list -->
-                            </div><!-- End .widget -->
-
-                            <div class="widget widget-banner-sidebar">
-                                <div class="banner-sidebar-title">ad box 280 x 280</div><!-- End .ad-title -->
-
-                                <div class="banner-sidebar banner-overlay">
-                                    <a href="#">
-                                        <img src="{% static 'assets/images/blog/sidebar/banner.jpg' %}" alt="banner">
-                                    </a>
-                                </div><!-- End .banner-ad -->
-                            </div><!-- End .widget -->
-
-                            <div class="widget">
-                                <h3 class="widget-title">Browse Tags</h3><!-- End .widget-title -->
-
-                                <div class="tagcloud">
-                                    {% for tag in tags %}
-                                    <a href="#">{{ tag.title }}</a>
-                                    {% endfor %}
-                                </div><!-- End .tagcloud -->
-                            </div><!-- End .widget -->
-
-                        </div><!-- End .sidebar -->
-                    </aside><!-- End .col-lg-3 -->
+                    {% include 'blogs/blog-left-side.html' %}
                 </div><!-- End .row -->
             </div><!-- End .container -->
         </div><!-- End .page-content -->

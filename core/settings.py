@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-pwtxvbhyi-5ej$fe$-tnn^uubq-4!pg3-vx)gj4w^s-5)mb5-_
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -85,12 +85,8 @@ WSGI_APPLICATION = 'core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'n68reviews',
-        'USER': 'n68reviews',
-        'PASSWORD': 'n68reviews',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -138,10 +134,10 @@ MEDIA_ROOT = BASE_DIR / 'media/'
 
 CKEDITOR_UPLOAD_PATH = 'media/ckeditor/'
 
-CKEDITOR_CONFIGS ={
+CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'full',
-    },
+    }
 }
 
 # Default primary key field type
