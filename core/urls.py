@@ -2,7 +2,7 @@
 URL configuration for core project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
-    https://docs.djangoproject.com/en/5.2/topics/http/urls/
+    https://docs.djangoproject.com/en/4.2/topics/http/urls/
 Examples:
 Function views
     1. Add an import:  from my_app import views
@@ -27,11 +27,11 @@ urlpatterns = [
 urlpatterns += i18n_patterns(
     path('admin/', admin.site.urls),
     path('blogs/', include('apps.blogs.urls', namespace='blogs')),
-    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
     path('products/', include('apps.products.urls', namespace='products')),
+    path('accounts/', include('apps.accounts.urls', namespace='accounts')),
+    # path('basket/', include('apps.basket.urls', namespace='basket')),
     path('', include('apps.pages.urls', namespace='pages')),
 )
-
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

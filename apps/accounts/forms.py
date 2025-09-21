@@ -1,9 +1,8 @@
+
 from django import forms
 from django.contrib.auth import authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
-from django.core.exceptions import ValidationError
-
 
 
 class RegisterModelForm(UserCreationForm):
@@ -14,7 +13,7 @@ class RegisterModelForm(UserCreationForm):
 
 class LoginForm(forms.Form):
     def __init__(self, *args, **kwargs):
-        self.request = kwargs.pop("request", None)
+        self.request = kwargs.pop("request", None)  # store request if passed
         super().__init__(*args, **kwargs)
 
     username = forms.CharField()
@@ -30,6 +29,6 @@ class LoginForm(forms.Form):
         if user is not None:
             self.cleaned_data['user'] = user
         else:
-            raise ValidationError('Username or Password is incorrect')
+            raise forms.ValidationError("Username or password is incorrect")
 
         return super().clean()

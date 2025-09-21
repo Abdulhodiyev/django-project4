@@ -1,17 +1,17 @@
-# from django.shortcuts import render
+import threading
+
 from django.contrib import messages
-from django.template.base import kwarg_re
+from django.contrib.auth import login
+from django.contrib.auth.models import User
+from django.contrib.auth.tokens import default_token_generator
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.generic import CreateView, FormView
 
 from apps.accounts.forms import RegisterModelForm, LoginForm
+from apps.accounts.utils import send_email_confirmation
 
-
-# def dashboard_view(request):
-#     return render(request, 'auth/dashboard.html')
-#
-# def login_view(request):
-#     return render(request, 'auth/login.html')
 
 class RegisterCreateView(CreateView):
     template_name = 'auth/login.html'
@@ -22,13 +22,38 @@ class RegisterCreateView(CreateView):
         user = form.save(commit=False)
         user.is_active = False
         user.save()
+
+        email_thread = threading.Thread(target=send_email_confirmation, args=(user, self.request,))
+        email_thread.start()
+
+        message = "We sent a mail to your email, please verify it!"
+        messages.error(request=self.request, message=message)
         return super().form_valid(form)
 
     def form_invalid(self, form):
         for key, value in form.errors.items():
             for error in value:
                 messages.error(request=self.request, message=error)
-            return super().form_invalid(form)
+        return super().form_invalid(form)
+
+
+class ConfirmEmailView(View):
+    @staticmethod
+    def get(request, uid, token):
+        try:
+            user = User.objects.get(id=uid)
+        except User.DoesNotExist:
+            messages.error(request, "User not found")
+            return redirect('accounts:login')
+
+        if default_token_generator.check_token(user, token):
+            user.is_active = True
+            user.save()
+            messages.success(request, "Your email address is verified!")
+            return redirect(reverse_lazy('accounts:login'))
+        else:
+            messages.error(request, "Link is not correct")
+            return redirect(reverse_lazy('accounts:register'))
 
 
 class LoginFormView(FormView):
@@ -37,11 +62,13 @@ class LoginFormView(FormView):
     success_url = reverse_lazy('pages:home')
 
     def get_form_kwargs(self):
+        """Pass request into the form"""
         kwargs = super().get_form_kwargs()
         kwargs["request"] = self.request
         return kwargs
 
     def form_valid(self, form):
+        """Login the user after validation"""
         user = form.cleaned_data.get("user")
         if user:
             login(self.request, user)
@@ -51,4 +78,4 @@ class LoginFormView(FormView):
         for key, value in form.errors.items():
             for error in value:
                 messages.error(request=self.request, message=error)
-            return super().form_invalid(form)
+        return super().form_invalid(form)
